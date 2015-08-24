@@ -11,7 +11,10 @@ Ext.define('Boleto.view.main.Main', {
         'Boleto.model.UF',
         'Boleto.model.ListaModel',
         'Boleto.view.main.Grafico',
-        'Ext.draw.Container'
+        'Ext.draw.Container',
+        'Ext.toolbar.TextItem',
+        'Ext.view.View',
+        'Ext.ux.DataView.Animated'
     ],
 
     xtype: 'main',
@@ -29,89 +32,58 @@ Ext.define('Boleto.view.main.Main', {
     },
     items: [{
         region: 'north',
-        layout: 'hbox',
-        align: 'stretch',
-        defaults: {
+        xtype: 'panel',
+        //layout: 'hbox',
+        //align: 'stretch',
+        heigth: 250,
+        html: 'norte'
+        /*defaults: {
             margin: '10 10 10 10'
-        },
-        items: [{
+        },*/
+        /*items: [{
             xtype: 'displayfield',
             fieldLabel: 'Cadastro de Beneficiario',
             width: 500
-        }]
+        }]*/
+    }, {
+        region: 'west',
+        xtype: 'panel',
+        layout: {
+            type: 'vbox',
+            align: 'stretch'
+        },
+        collapsible: true,
+        bind: {
+            title: '{name}'
+        },
+        width: 150,
+        items: [{
+            xtype: 'button',
+            text: 'Menu'
+        }, {
+            xtype: 'button',
+            text: 'Menu'
+        }, {
+            xtype: 'button',
+            text: 'Menu'
+        }, {
+            xtype: 'button',
+            text: 'Menu'
+        }],
+        split: true
+
     }, {
         region: 'center',
-        xtype: 'tabpanel',
-        listeners: {
-            tabchange: 'onTabChange'
-        },
-        //ui: 'navigation',
-        fullscreen: true,
-        resizeTabs: true,
-        tabPosition: 'left',
-        tabRotation: 0,
-        tabBar: {
-            border: false
-        },
-        defaults: {
-            bodyPadding: 1,
-            flex: 1
-        },
-        items: [{
-            title: 'Principal',
-            sprite: 'image',
-            src: 'bradesco.png',
-            //mode: 'element',
-            height: '500px',
-            listeners: {
-                tap: function() {
-                    open('http://www.google.com');
-                }
-            }
-
-        }, {
-            title: 'Banco Brasil',
-            xtype: 'boletoDetalhe',
-            listeners: {
-                salvadoComSucesso: 'onAtualizaLista'
-            }
-        }, {
-            title: 'Caixa',
-            //xtype: 'boletoDetalhe'
-            xtype: 'radial-marked',
-            layout: 'fit',
-            autoScroll: true
-
-        }, {
-            title: 'Itaú',
-            xtype: 'boletoDetalhe',
-            listeners: {
-                salvadoComSucesso: 'onAtualizaLista'
-            }
-        }, {
-            title: 'Bradesco',
-            xtype: 'boletoDetalhe',
-            listeners: {
-                salvadoComSucesso: 'onAtualizaLista'
-            }
-        }, {
-            title: 'Santander',
-            xtype: 'boletoDetalhe',
-            listeners: {
-                salvadoComSucesso: 'onAtualizaLista'
-            }
-        }, {
-            title: 'Sicred',
-            xtype: 'boletoDetalhe',
-            listeners: {
-                salvadoComSucesso: 'onAtualizaLista'
-            }
-        }]
+        xtype: 'central',
+        layout: 'fit',
+        listeners:{
+            salvadoComSucesso2: 'onAtualizaLista'
+        }
     }, {
         region: 'south',
         xtype: 'boletoLista',
         reference: 'listaBoletos',
-        height: 200,
-        width: 500
+        heigth: 450,
+        split: true
     }]
 });

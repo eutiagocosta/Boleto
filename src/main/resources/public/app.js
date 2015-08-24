@@ -1,9 +1,14 @@
+/*
+ * This file is generated and updated by Sencha Cmd. You can edit this file as
+ * needed for your application, but these edits will have to be merged by
+ * Sencha Cmd when upgrading.
+ */
 Ext.application({
     name: 'Boleto',
 
-    extend: 'Boleto.Application'
+    extend: 'Boleto.Application',
     
-    //autoCreateViewport: 'Boleto.view.main.Main'
+    autoCreateViewport: 'Boleto.view.main.Main'
 	
     //-------------------------------------------------------------------------
     // Most customizations should be made to Boleto.Application. If you need to

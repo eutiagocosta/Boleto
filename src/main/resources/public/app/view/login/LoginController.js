@@ -14,7 +14,7 @@ Ext.define('Boleto.view.login.LoginController', {
         this.getView().destroy();
 
         // Add the boleto view to the viewport
-        Ext.widget('Boleto');
+        Ext.widget('main');
 
     }
 

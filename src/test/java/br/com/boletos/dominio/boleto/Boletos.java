@@ -53,7 +53,7 @@ public class Boletos {
 				new IBeneficiario("1824", "4", "76000", "5", "18", "9000206", "", "Fulano de Tal", "111.222.333-11",
 						new IEndereco("Av das Empresas, 555", "Bairro Grande", "01234-555", "São Paulo", "SP"),
 						"1207113"),
-				"instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5", "local 1", "local 2");
+				"instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5", "local 1", "local 2", "CAIXA");
 		
 		repositorio.salvar(bol);
 	}
