@@ -38,11 +38,15 @@ Ext.define('Boleto.view.boleto.BoletoDetalheController', {
 
     },
 
-    onClickTeste: function(btn, e, eOpts) {
-        var window = btn.up('window');
-        var form = window.down('form');
-        form.getForm().reset();
-        window.close();
+    onClickTeste: function(button, pressed) {
+        button.setText('Click here to see fadeIn() effect');
+        var x = Ext.get("section").fadeIn({
+            opacity: 0,
+            easing: 'easeOut',
+            duration: 2000,
+            remove: true,
+            useDisplay: false
+        });
     },
 
     onClickSair: function(btn, e, eOpts) {

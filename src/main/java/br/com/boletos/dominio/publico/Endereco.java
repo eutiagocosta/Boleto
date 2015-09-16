@@ -1,14 +1,15 @@
-package br.com.boletos.dominio.boleto;
+package br.com.boletos.dominio.publico;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class IEndereco {
+@Entity(name = "ENDERECO")
+public class Endereco {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	public String logradouro;
@@ -18,9 +19,9 @@ public class IEndereco {
 	public String uf;
 	
 	@SuppressWarnings("unused")
-	private IEndereco(){}
+	private Endereco(){}
 	
-	public IEndereco(String logradouro, String bairro, String cep, String cidade, String uf) {
+	public Endereco(String logradouro, String bairro, String cep, String cidade, String uf) {
 		this.logradouro = logradouro;
 		this.bairro = bairro;
 		this.cep = cep;

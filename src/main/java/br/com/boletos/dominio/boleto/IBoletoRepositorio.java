@@ -10,7 +10,7 @@ public interface IBoletoRepositorio {
 	
 	void remover(IBoletoId boletoId);
 	
-	 IBoletoId novoId();
+	IBoletoId novoId();
 
 	List<IBoleto> buscarTodos();
 

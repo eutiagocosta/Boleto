@@ -8,7 +8,7 @@ Ext.define('Boleto.view.boleto.BoletoListaController', {
         
         var rec = btn.getWidgetRecord();
 
-        window.open('imprimir_boleto?boletoId=' + rec.get('iBoletoId'));
+        window.open('imprimir_boleto?boletoId=' + rec.get('boletoId'));
 
         this.getViewModel().getStore('boletoStore').load();
     }

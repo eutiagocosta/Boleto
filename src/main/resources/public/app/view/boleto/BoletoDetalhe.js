@@ -11,6 +11,8 @@ Ext.define('Boleto.view.boleto.BoletoDetalhe', {
         type: 'boletoDetalhe'
     },
 
+    id: 'section',
+
     controller: 'boletoDetalhe',
     //bind:{
     //    title: '{boletoDetalhe.banco}'
@@ -23,7 +25,6 @@ Ext.define('Boleto.view.boleto.BoletoDetalhe', {
     plain: true,
     heigth: 600,
     width: 950,
-    modal: true,
     items: [{
         xtype: 'form',
         layout: {
@@ -372,7 +373,9 @@ Ext.define('Boleto.view.boleto.BoletoDetalhe', {
             }, {
                 xtype: 'button',
                 text: 'Teste',
-                handler: 'onClickTeste'
+                handler: 'onClickTeste',
+                pressed: true,
+                enableToggle: true
             }]
         }]
     }]

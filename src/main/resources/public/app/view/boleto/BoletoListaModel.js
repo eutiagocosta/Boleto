@@ -4,22 +4,13 @@ Ext.define('Boleto.view.boleto.BoletoListaModel', {
 
     stores: {
         boletoStore: {
-            model: 'Boleto.model.ListaModel',
+            model: 'Boleto.model.Boleto',
             autoLoad: true,
             pageSize: 0,
             noCache: false,
             params: {
                 start: 0,
                 limit: 10
-            },
-            proxy: {
-                type: 'ajax',
-                url: 'listarBoletos',
-                timeout: 50000,
-                reader: {
-                    type: 'json',
-                    rootProperty: 'rows'
-                }
             }
         }
     }

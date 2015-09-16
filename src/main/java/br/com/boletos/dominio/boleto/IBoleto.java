@@ -2,24 +2,35 @@ package br.com.boletos.dominio.boleto;
 
 import java.math.BigDecimal;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import br.com.boletos.dominio.beneficiario.IBeneficiario;
+import br.com.boletos.dominio.publico.PublicoId;
 
-@Entity
+@Entity(name = "IBOLETO")
 public class IBoleto {
-
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@Embedded
 	private IBoletoId boletoId;
+
+	@Embedded
+    @AttributeOverride(name="publicoId", column=@Column(name="BENEFICIARIO_ID"))
+	private PublicoId beneficiarioId;
+	
+	@Embedded
+	@AttributeOverride(name="publicoId", column=@Column(name="PAGADOR_ID"))
+	private PublicoId pagadorId;
 	
 	private BigDecimal valorBoleto = BigDecimal.ZERO;
 	private BigDecimal quantidadeMoeda = BigDecimal.ZERO;
@@ -37,11 +48,6 @@ public class IBoleto {
 	@OneToOne(cascade = CascadeType.ALL)
 	private IDatas datas;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private IPagador pagador;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	private IBeneficiario beneficiario;
 	private String instrucao1;
 	private String instrucao2;
 	private String instrucao3;
@@ -49,18 +55,21 @@ public class IBoleto {
 	private String instrucao5;
 	private String localPagamento1;
 	private String localPagamento2;
+	private String banco;
 	
-	public IBoleto(IBoletoId boletoId, BigDecimal valorBoleto, BigDecimal quantidadeMoeda,
-			BigDecimal valorMoeda, BigDecimal valorDescontos,
-			BigDecimal valorDeducoes, BigDecimal valorMulta,
-			BigDecimal valorAcrescimos, String especieMoeda,
-			int codigoEspecieMoeda, String especieDocumento,
-			String numeroDocumento, IDatas datas,
-			IPagador pagador, IBeneficiario beneficiario, String instrucao1,
-			String instrucao2, String instrucao3, String instrucao4,
-			String instrucao5, String localPagamento1, String localPagamento2) {
-
+	@SuppressWarnings("unused")
+	private IBoleto(){}
+	
+	public IBoleto(IBoletoId boletoId, PublicoId beneficiarioId, PublicoId pagadorId, BigDecimal valorBoleto,
+			BigDecimal quantidadeMoeda, BigDecimal valorMoeda, BigDecimal valorDescontos, BigDecimal valorDeducoes,
+			BigDecimal valorMulta, BigDecimal valorAcrescimos, String especieMoeda, int codigoEspecieMoeda,
+			String especieDocumento, String numeroDocumento, IDatas datas, String instrucao1, String instrucao2,
+			String instrucao3, String instrucao4, String instrucao5, 
+			String localPagamento1, String localPagamento2, String banco) {
+		
 		this.boletoId = boletoId;
+		this.beneficiarioId = beneficiarioId;
+		this.pagadorId = pagadorId;
 		this.valorBoleto = valorBoleto;
 		this.quantidadeMoeda = quantidadeMoeda;
 		this.valorMoeda = valorMoeda;
@@ -73,8 +82,6 @@ public class IBoleto {
 		this.especieDocumento = especieDocumento;
 		this.numeroDocumento = numeroDocumento;
 		this.datas = datas;
-		this.pagador = pagador;
-		this.beneficiario = beneficiario;
 		this.instrucao1 = instrucao1;
 		this.instrucao2 = instrucao2;
 		this.instrucao3 = instrucao3;
@@ -82,19 +89,27 @@ public class IBoleto {
 		this.instrucao5 = instrucao5;
 		this.localPagamento1 = localPagamento1;
 		this.localPagamento2 = localPagamento2;
+		this.banco = banco;
 	}
-	
-	@SuppressWarnings("unused")
-	private IBoleto(){}
 	
 	public IBoletoId getBoletoId() {
 		return boletoId;
 	}
-
 	public void setBoletoId(IBoletoId boletoId) {
 		this.boletoId = boletoId;
 	}
-
+	public PublicoId getBeneficiarioId() {
+		return beneficiarioId;
+	}
+	public void setBeneficiarioId(PublicoId beneficiarioId) {
+		this.beneficiarioId = beneficiarioId;
+	}
+	public PublicoId getPagadorId() {
+		return pagadorId;
+	}
+	public void setPagadorId(PublicoId pagadorId) {
+		this.pagadorId = pagadorId;
+	}
 	public BigDecimal getValorBoleto() {
 		return valorBoleto;
 	}
@@ -167,18 +182,6 @@ public class IBoleto {
 	public void setDatas(IDatas datas) {
 		this.datas = datas;
 	}
-	public IPagador getPagador() {
-		return pagador;
-	}
-	public void setPagador(IPagador pagador) {
-		this.pagador = pagador;
-	}
-	public IBeneficiario getBeneficiario() {
-		return beneficiario;
-	}
-	public void setBeneficiario(IBeneficiario beneficiario) {
-		this.beneficiario = beneficiario;
-	}
 	public String getInstrucao1() {
 		return instrucao1;
 	}
@@ -221,6 +224,13 @@ public class IBoleto {
 	public void setLocalPagamento2(String localPagamento2) {
 		this.localPagamento2 = localPagamento2;
 	}
-	
 
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco;
+	}
+	
 }

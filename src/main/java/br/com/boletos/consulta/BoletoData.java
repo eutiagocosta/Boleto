@@ -1,10 +1,11 @@
-package br.com.boletos.comando;
+package br.com.boletos.consulta;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-public class NovoBoletoComando {
-	
+public class BoletoData {
+
+	private String boletoId;
 	private String beneficiarioId;
 	private String pagadorId;
 	private BigDecimal quantidadeMoeda;
@@ -30,15 +31,16 @@ public class NovoBoletoComando {
 	private String localPagamento2;
 	private String banco;
 	
-	public NovoBoletoComando(){}
+	public BoletoData(){}
 
-	public NovoBoletoComando(String beneficiarioId, String pagadorId, BigDecimal quantidadeMoeda,
+	public BoletoData(String boletoId, String beneficiarioId, String pagadorId, BigDecimal quantidadeMoeda,
 			BigDecimal valorMoeda, BigDecimal valorDescontos, BigDecimal valorDeducoes, BigDecimal valorMulta,
 			BigDecimal valorAcrescimos, String especieMoeda, int codigoEspecieMoeda, String especieDocumento,
 			Calendar emissao, Calendar processamento, Calendar vencimento, BigDecimal valor, String numeroDocumento,
 			String instrucao1, String instrucao2, String instrucao3, String instrucao4, String instrucao5,
 			String localPagamento1, String localPagamento2, String banco) {
 
+		this.boletoId = boletoId;
 		this.beneficiarioId = beneficiarioId;
 		this.pagadorId = pagadorId;
 		this.quantidadeMoeda = quantidadeMoeda;
@@ -63,6 +65,14 @@ public class NovoBoletoComando {
 		this.localPagamento1 = localPagamento1;
 		this.localPagamento2 = localPagamento2;
 		this.banco = banco;
+	}
+
+	public String getBoletoId() {
+		return boletoId;
+	}
+
+	public void setBoletoId(String boletoId) {
+		this.boletoId = boletoId;
 	}
 
 	public String getBeneficiarioId() {

@@ -9,7 +9,7 @@ Ext.define('Boleto.view.main.Main', {
         'Boleto.view.main.MainModel',
         'Boleto.model.Boleto',
         'Boleto.model.UF',
-        'Boleto.model.ListaModel',
+        'Boleto.model.ListaBoletoModel',
         'Boleto.view.main.Grafico',
         'Ext.draw.Container',
         'Ext.toolbar.TextItem',
@@ -59,7 +59,11 @@ Ext.define('Boleto.view.main.Main', {
         width: 150,
         items: [{
             xtype: 'button',
-            text: 'Menu'
+            text: 'Cadastro de Público',
+            handler: 'onCadastroPublico',
+            listeners:{
+                salvadoComSucesso: 'onSalvadoComSucesso'
+            }
         }, {
             xtype: 'button',
             text: 'Menu'
@@ -75,10 +79,10 @@ Ext.define('Boleto.view.main.Main', {
     }, {
         region: 'center',
         xtype: 'central',
-        layout: 'fit',
-        listeners:{
+        layout: 'fit'
+        /*listeners:{
             salvadoComSucesso2: 'onAtualizaLista'
-        }
+        }*/
     }, {
         region: 'south',
         xtype: 'boletoLista',

@@ -1,7 +1,7 @@
 Ext.define('Boleto.model.Boleto', {
 	extend: 'Ext.data.Model',
 
-	idProperty: 'iBoletoId',
+	idProperty: 'boletoId',
 	
 	fields: [
 		{name: 'emissao',       type: 'date', dateFormat: 'c'},
@@ -39,14 +39,15 @@ Ext.define('Boleto.model.Boleto', {
 		'banco'
 	],
 	proxy: {
-		api: {
-			create: '/novo'
-		},
-		type: 'ajax',
-		reader: {
-			type: 'json',
-			rootProperty: 'rows'
-		}
+	    api: {
+	        create: '/boleto/novo',
+	        read: '/boleto/listar'
+	    },
+	    type: 'ajax',
+	    reader: {
+	        type: 'json',
+	        rootProperty: 'rows'
+	    }
 	}
 
 });
