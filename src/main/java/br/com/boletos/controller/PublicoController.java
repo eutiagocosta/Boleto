@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import br.com.boletos.aplicacao.PublicoService;
 import br.com.boletos.comando.NovoPublicoComando;
 import br.com.boletos.dominio.publico.PublicoId;
 import br.com.boletos.util.Retorno;
+import net.sf.jasperreports.engine.JRException;
 
 @RestController
 @RequestMapping("/publico")
@@ -43,5 +45,17 @@ public class PublicoController {
 	@ResponseBody 
 	public Retorno buscarPublicoPeloCodigo(@RequestBody String codigo) throws Exception{
 		return new Retorno(servico.obterPublicoPeloCodigo(Long.parseLong(codigo)));
+	}
+	
+	@RequestMapping(value = "/buscarPeloTipo", method=RequestMethod.GET)
+	@ResponseBody 
+	public Retorno buscarPublicoPeloTipo(@RequestParam(value="tipo")String tipo) throws Exception{
+		return new Retorno(servico.obterPublicoPeloTipo(tipo));
+	}
+	
+	@RequestMapping(value = "/obter_nome_pagador", method = RequestMethod.GET)
+	@ResponseBody
+	public Retorno obterNomePagador(@RequestParam(value="pagadorId")String pagadorId) throws JRException{
+		return new Retorno(servico.obterNomePeloId(pagadorId));
 	}
 }

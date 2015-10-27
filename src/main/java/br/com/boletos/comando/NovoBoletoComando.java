@@ -7,7 +7,7 @@ public class NovoBoletoComando {
 	
 	private String beneficiarioId;
 	private String pagadorId;
-	private BigDecimal quantidadeMoeda;
+	/*private BigDecimal quantidadeMoeda;
 	private BigDecimal valorMoeda;
 	private BigDecimal valorDescontos;
 	private BigDecimal valorDeducoes;
@@ -15,12 +15,12 @@ public class NovoBoletoComando {
 	private BigDecimal valorAcrescimos;
 	private String especieMoeda;
 	private int codigoEspecieMoeda;
-	private String especieDocumento;
+	private String especieDocumento;*/
 	private Calendar emissao;
 	private Calendar processamento;
 	private Calendar vencimento;
 	private BigDecimal valor;
-	private String numeroDocumento;
+	//private String numeroDocumento;
 	private String instrucao1;
 	private String instrucao2;
 	private String instrucao3;
@@ -32,29 +32,16 @@ public class NovoBoletoComando {
 	
 	public NovoBoletoComando(){}
 
-	public NovoBoletoComando(String beneficiarioId, String pagadorId, BigDecimal quantidadeMoeda,
-			BigDecimal valorMoeda, BigDecimal valorDescontos, BigDecimal valorDeducoes, BigDecimal valorMulta,
-			BigDecimal valorAcrescimos, String especieMoeda, int codigoEspecieMoeda, String especieDocumento,
-			Calendar emissao, Calendar processamento, Calendar vencimento, BigDecimal valor, String numeroDocumento,
-			String instrucao1, String instrucao2, String instrucao3, String instrucao4, String instrucao5,
-			String localPagamento1, String localPagamento2, String banco) {
+	public NovoBoletoComando(String beneficiarioId, String pagadorId, Calendar emissao, Calendar processamento,
+			Calendar vencimento, BigDecimal valor, String instrucao1, String instrucao2, String instrucao3,
+			String instrucao4, String instrucao5, String localPagamento1, String localPagamento2, String banco) {
 
 		this.beneficiarioId = beneficiarioId;
 		this.pagadorId = pagadorId;
-		this.quantidadeMoeda = quantidadeMoeda;
-		this.valorMoeda = valorMoeda;
-		this.valorDescontos = valorDescontos;
-		this.valorDeducoes = valorDeducoes;
-		this.valorMulta = valorMulta;
-		this.valorAcrescimos = valorAcrescimos;
-		this.especieMoeda = especieMoeda;
-		this.codigoEspecieMoeda = codigoEspecieMoeda;
-		this.especieDocumento = especieDocumento;
 		this.emissao = emissao;
 		this.processamento = processamento;
 		this.vencimento = vencimento;
 		this.valor = valor;
-		this.numeroDocumento = numeroDocumento;
 		this.instrucao1 = instrucao1;
 		this.instrucao2 = instrucao2;
 		this.instrucao3 = instrucao3;
@@ -79,78 +66,6 @@ public class NovoBoletoComando {
 
 	public void setPagadorId(String pagadorId) {
 		this.pagadorId = pagadorId;
-	}
-
-	public BigDecimal getQuantidadeMoeda() {
-		return quantidadeMoeda;
-	}
-
-	public void setQuantidadeMoeda(BigDecimal quantidadeMoeda) {
-		this.quantidadeMoeda = quantidadeMoeda;
-	}
-
-	public BigDecimal getValorMoeda() {
-		return valorMoeda;
-	}
-
-	public void setValorMoeda(BigDecimal valorMoeda) {
-		this.valorMoeda = valorMoeda;
-	}
-
-	public BigDecimal getValorDescontos() {
-		return valorDescontos;
-	}
-
-	public void setValorDescontos(BigDecimal valorDescontos) {
-		this.valorDescontos = valorDescontos;
-	}
-
-	public BigDecimal getValorDeducoes() {
-		return valorDeducoes;
-	}
-
-	public void setValorDeducoes(BigDecimal valorDeducoes) {
-		this.valorDeducoes = valorDeducoes;
-	}
-
-	public BigDecimal getValorMulta() {
-		return valorMulta;
-	}
-
-	public void setValorMulta(BigDecimal valorMulta) {
-		this.valorMulta = valorMulta;
-	}
-
-	public BigDecimal getValorAcrescimos() {
-		return valorAcrescimos;
-	}
-
-	public void setValorAcrescimos(BigDecimal valorAcrescimos) {
-		this.valorAcrescimos = valorAcrescimos;
-	}
-
-	public String getEspecieMoeda() {
-		return especieMoeda;
-	}
-
-	public void setEspecieMoeda(String especieMoeda) {
-		this.especieMoeda = especieMoeda;
-	}
-
-	public int getCodigoEspecieMoeda() {
-		return codigoEspecieMoeda;
-	}
-
-	public void setCodigoEspecieMoeda(int codigoEspecieMoeda) {
-		this.codigoEspecieMoeda = codigoEspecieMoeda;
-	}
-
-	public String getEspecieDocumento() {
-		return especieDocumento;
-	}
-
-	public void setEspecieDocumento(String especieDocumento) {
-		this.especieDocumento = especieDocumento;
 	}
 
 	public Calendar getEmissao() {
@@ -183,14 +98,6 @@ public class NovoBoletoComando {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
-	}
-
-	public String getNumeroDocumento() {
-		return numeroDocumento;
-	}
-
-	public void setNumeroDocumento(String numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
 	}
 
 	public String getInstrucao1() {
@@ -256,5 +163,6 @@ public class NovoBoletoComando {
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
+
 	
 }

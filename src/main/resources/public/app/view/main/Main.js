@@ -33,18 +33,8 @@ Ext.define('Boleto.view.main.Main', {
     items: [{
         region: 'north',
         xtype: 'panel',
-        //layout: 'hbox',
-        //align: 'stretch',
-        heigth: 250,
+        heigth: 50,
         html: 'norte'
-        /*defaults: {
-            margin: '10 10 10 10'
-        },*/
-        /*items: [{
-            xtype: 'displayfield',
-            fieldLabel: 'Cadastro de Beneficiario',
-            width: 500
-        }]*/
     }, {
         region: 'west',
         xtype: 'panel',
@@ -61,18 +51,18 @@ Ext.define('Boleto.view.main.Main', {
             xtype: 'button',
             text: 'Cadastro de Público',
             handler: 'onCadastroPublico',
-            listeners:{
+            listeners: {
                 salvadoComSucesso: 'onSalvadoComSucesso'
             }
         }, {
             xtype: 'button',
-            text: 'Menu'
+            text: 'Remessa'
         }, {
             xtype: 'button',
-            text: 'Menu'
+            text: 'Retorno'
         }, {
             xtype: 'button',
-            text: 'Menu'
+            text: 'Configurações'
         }],
         split: true
 
@@ -80,14 +70,11 @@ Ext.define('Boleto.view.main.Main', {
         region: 'center',
         xtype: 'central',
         layout: 'fit'
-        /*listeners:{
-            salvadoComSucesso2: 'onAtualizaLista'
-        }*/
     }, {
         region: 'south',
         xtype: 'boletoLista',
         reference: 'listaBoletos',
-        heigth: 450,
-        split: true
+        heigth: 200
+
     }]
 });

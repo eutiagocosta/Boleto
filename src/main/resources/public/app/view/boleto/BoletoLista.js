@@ -7,11 +7,12 @@ Ext.define('Boleto.view.boleto.BoletoLista', {
     ],
 
     xtype: 'boletoLista',
-
+    layout: 'fit',
     controller: 'boletoLista',
     title: 'Emitidos',
     autoShow: true,
     displayInfo: true,
+    //scrollable: true, 
     reference: 'boletoLista',
 
     viewModel: {
@@ -21,16 +22,16 @@ Ext.define('Boleto.view.boleto.BoletoLista', {
     bind: {
         store: '{boletoStore}'
     },
-    //listeners: {
-    //    itemdblclick: 'onDblClick'
-    //},
+    listeners: {
+        renderBoletoLista: 'renderBoletoLista'
+    },
     columns: [{
         text: 'Emissão',
         dataIndex: 'emissao',
         renderer: Ext.util.Format.dateRenderer('d/m/Y')
     }, {
         text: 'Pagador',
-        dataIndex: 'nomePagador',
+        renderer: 'renderBoletoLista',
         flex: 1
     }, {
         text: 'Valor',
@@ -45,5 +46,6 @@ Ext.define('Boleto.view.boleto.BoletoLista', {
             width: 105,
             handler: 'onImprimirBoleto'
         }
-    }]
+    }],
+    flex: 1
 });

@@ -23,23 +23,23 @@ public class BoletoController {
 	@Autowired
 	private BoletoService servico;
 	
-	@RequestMapping(value = "novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	@ResponseBody 
 	public Retorno novoBoleto(@RequestBody NovoBoletoComando comando) throws Exception{
 		String id = servico.criarBoleto(comando);
 		return new Retorno(servico.obterPeloId(new IBoletoId(id)));
 	}
 	
-	@RequestMapping(value = "listar", method=RequestMethod.GET)
+	@RequestMapping(value = "/listar", method=RequestMethod.GET)
 	@ResponseBody 
 	public Retorno listarBoletos(){
 		return new Retorno(servico.listarTodos());
 	}
 	
-	@RequestMapping(value = "imprimir_boleto", method=RequestMethod.GET)
+	@RequestMapping(value = "/imprimir_boleto", method=RequestMethod.GET)
 	@ResponseBody 
 	public ResponseEntity<InputStreamResource> imprimirBoleto(@RequestParam(value="boletoId")String boletoId) throws JRException{
 		return servico.imprimirBoleto(boletoId);
-	}	
+	}
 
 }

@@ -20,6 +20,7 @@ import br.com.boletos.consulta.BoletoData;
 import br.com.boletos.dominio.boleto.IBoleto;
 import br.com.boletos.dominio.boleto.IBoletoId;
 import br.com.boletos.dominio.boleto.IBoletoRepositorio;
+import br.com.boletos.dominio.boleto.IDatas;
 import br.com.boletos.dominio.publico.Publico;
 import br.com.boletos.dominio.publico.PublicoId;
 import br.com.boletos.dominio.publico.PublicoRepositorio;
@@ -27,7 +28,6 @@ import br.com.caelum.stella.boleto.Banco;
 import br.com.caelum.stella.boleto.Beneficiario;
 import br.com.caelum.stella.boleto.Boleto;
 import br.com.caelum.stella.boleto.Datas;
-import br.com.boletos.dominio.boleto.IDatas;
 import br.com.caelum.stella.boleto.Endereco;
 import br.com.caelum.stella.boleto.Pagador;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
@@ -50,7 +50,7 @@ public class BoletoService {
 								  new PublicoId(comando.getBeneficiarioId()), 
 								  new PublicoId(comando.getPagadorId()), 
 								  comando.getValor(), 
-								  comando.getQuantidadeMoeda(),
+								  /*comando.getQuantidadeMoeda(),
 								  comando.getValorMoeda(), 
 								  comando.getValorDescontos(),
 								  comando.getValorDeducoes(),
@@ -59,7 +59,7 @@ public class BoletoService {
 								  comando.getEspecieMoeda(),
 								  comando.getCodigoEspecieMoeda(), 
 								  comando.getEspecieDocumento(), 
-								  comando.getNumeroDocumento(),
+								  comando.getNumeroDocumento(),*/
 								  new IDatas(comando.getEmissao(), 
 										     comando.getProcessamento(), 
 										     comando.getVencimento()),
@@ -108,7 +108,7 @@ public class BoletoService {
 			  : new BoletoData(boleto.getBoletoId().id(), 
 					  			boleto.getBeneficiarioId().id(), 
 					  			boleto.getPagadorId().id(), 
-					  			boleto.getQuantidadeMoeda(), 
+					  			/*boleto.getQuantidadeMoeda(), 
 					  			boleto.getValorMoeda(), 
 					  			boleto.getValorDescontos(), 
 					  			boleto.getValorDeducoes(),
@@ -116,12 +116,12 @@ public class BoletoService {
 					  			boleto.getValorAcrescimos(), 
 					  			boleto.getEspecieMoeda(), 
 					  			boleto.getCodigoEspecieMoeda(), 
-					  			boleto.getEspecieDocumento(), 
+					  			boleto.getEspecieDocumento(), */
 					  			boleto.getDatas().getDocumento(), 
 					  			boleto.getDatas().getProcessamento(), 
 					  			boleto.getDatas().getVencimento(), 
 					  			boleto.getValorBoleto(), 
-					  			boleto.getNumeroDocumento(), 
+					  			//boleto.getNumeroDocumento(), 
 					  			boleto.getInstrucao1(), 
 					  			boleto.getInstrucao2(), 
 					  			boleto.getInstrucao3(), 
@@ -206,7 +206,7 @@ public class BoletoService {
 				.comBeneficiario(ben)
 				.comPagador(pag)
 				.comValorBoleto(iboleto.getValorBoleto())
-				.comNumeroDoDocumento(iboleto.getNumeroDocumento())
+				.comNumeroDoDocumento("1234")
 				.comInstrucoes(iboleto.getInstrucao1(), iboleto.getInstrucao2(), iboleto.getInstrucao3(),
 						iboleto.getInstrucao4(), iboleto.getInstrucao5())
 				.comLocaisDePagamento(iboleto.getLocalPagamento1(), iboleto.getLocalPagamento2());

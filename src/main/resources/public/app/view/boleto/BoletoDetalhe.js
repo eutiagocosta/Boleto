@@ -18,12 +18,15 @@ Ext.define('Boleto.view.boleto.BoletoDetalhe', {
     //    title: '{boletoDetalhe.banco}'
     //},
     title: 'Emissão de Boleto',
+    //maximized: true,
+    maximizable: true,
     titleAlign: 'center',
-    autoScroll: true,
-    overflowY: 'scroll',
+    //autoScroll: true,
+    //overflowY: 'scroll',
     closable: true,
-    plain: true,
-    heigth: 600,
+    //plain: true,
+    //heigth: 600,
+    layout: 'fit',
     width: 950,
     items: [{
         xtype: 'form',
@@ -32,7 +35,8 @@ Ext.define('Boleto.view.boleto.BoletoDetalhe', {
             align: 'stretch'
         },
         items: [{
-            xtypes: 'panel',
+            xtype: 'panel',
+            resizable: true,
             title: 'Dados Específicos',
             layout: 'column',
             defaults: {
@@ -80,215 +84,101 @@ Ext.define('Boleto.view.boleto.BoletoDetalhe', {
                 fieldStyle: 'text-align: right;',
                 width: 220,
                 columnWidth: 0.25
-
             }]
         }, {
-            xtypes: 'panel',
-            title: 'Dados do Cliente',
-            layout: 'column',
-            defaults: {
-                padding: 5
-            },
-            items: [{
-                xtype: 'textfield',
-                fieldLabel: 'Nome',
-                width: 500,
-                bind: {
-                    value: '{boletoDetalhe.nomePagador}'
-                },
-                fieldStyle: 'text-transform:uppercase'
+            xtype: 'grid',
+            title: 'Pagador',
+            height: 150,
+            selModel: Ext.create('Ext.selection.CheckboxModel', {
+                mode: 'SINGLE'
+            }),
+            reference: 'publicoPagador',
+            columns: [{
+                text: 'Código',
+                dataIndex: 'codigoPublico',
+                width: 80
             }, {
-                xtype: 'numberfield',
-                fieldLabel: 'CPF',
-                width: 300,
-                bind: {
-                    value: '{boletoDetalhe.cpfPagador}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
+                text: 'Nome',
+                dataIndex: 'nome',
+                width: 400
             }, {
-                xtype: 'textfield',
-                fieldLabel: 'Logradouro',
-                width: 500,
-                bind: {
-                    value: '{boletoDetalhe.logradouroPagador}'
-                },
-                fieldStyle: 'text-transform:uppercase'
+                text: 'Email',
+                dataIndex: 'email',
+                flex: 1
             }, {
-                xtype: 'textfield',
-                fieldLabel: 'Bairro',
-                width: 300,
-                bind: {
-                    value: '{boletoDetalhe.bairroPagador}'
-                },
-                fieldStyle: 'text-transform:uppercase'
-            }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Cep',
-                width: 200,
-                bind: {
-                    value: '{boletoDetalhe.cepPagador}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
-            }, {
-                xtype: 'textfield',
-                fieldLabel: 'Cidade',
-                width: 290,
-                bind: {
-                    value: '{boletoDetalhe.cidadePagador}'
-                },
-                fieldStyle: 'text-transform:uppercase'
-            }, {
-                xtype: 'ufCombo',
-                width: 160,
-                fieldLabel: 'U.F.',
-                editable: false,
-                queryMode: 'local',
-                displayField: 'uf',
-                //store: 'Boleto.model.UF',
-                bind: '{boletoDetalhe.ufPagador}'
-            }]
+                text: 'Tipo',
+                dataIndex: 'tipo',
+                width: 120
+            }],
+            store: Ext.create('Ext.data.Store', {
+                fields: [
+                    'codigoPublico',
+                    'nome',
+                    'email',
+                    'tipo'
+                ],
+                sorters: 'nome',
+                autoLoad: true,
+                proxy: {
+                    type: 'ajax',
+                    url: '/publico/buscarPeloTipo',
+                    reader: {
+                        type: 'json',
+                        rootProperty: 'rows'
+                    },
+                    extraParams: {
+                        tipo: 'PAGADOR'
+                    },
+                    noCache: false
+                }
+            })
         }, {
-            xtype: 'panel',
-            defaults: {
-                padding: 5
-            },
-            layout: 'column',
-            title: 'Emissor',
-            items: [{
-                xtype: 'textfield',
-                fieldLabel: 'Nome',
-                width: 500,
-                bind: {
-                    value: '{boletoDetalhe.nomeBeneficiario}'
-                },
-                fieldStyle: 'text-transform:uppercase'
+            xtype: 'grid',
+            title: 'Beneficiário',
+            height: 150,
+            selModel: Ext.create('Ext.selection.CheckboxModel', {
+                mode: 'SINGLE'
+            }),
+            reference: 'publicoBeneficiario',
+            columns: [{
+                text: 'Código',
+                dataIndex: 'codigoPublico',
+                width: 80
             }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Agência',
-                width: 200,
-                bind: {
-                    value: '{boletoDetalhe.agenciaBeneficiario}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
+                text: 'Nome',
+                dataIndex: 'nome',
+                width: 400
             }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Dígito',
-                width: 150,
-                bind: {
-                    value: '{boletoDetalhe.digitoBeneficiario}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
+                text: 'Email',
+                dataIndex: 'email',
+                flex: 1
             }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Cód. Benef',
-                width: 300,
-                bind: {
-                    value: '{boletoDetalhe.codigoBeneficiario}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
-            }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Dígito',
-                width: 150,
-                margin: '0 0 0 40',
-                bind: {
-                    value: '{boletoDetalhe.digitoCodigoBeneficiario}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
-            }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Convênio',
-                width: 200,
-                bind: {
-                    value: '{boletoDetalhe.convenioBeneficiario}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
-            }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Carteira',
-                width: 150,
-                bind: {
-                    value: '{boletoDetalhe.carteiraBeneficiario}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
-            }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Nosso Número',
-                width: 300,
-                bind: {
-                    value: '{boletoDetalhe.nossoNumero}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
-            }]
-        }, {
-            xtype: 'panel',
-            defaults: {
-                padding: 5
-            },
-            layout: 'column',
-            title: 'Emissor - Endereço',
-            items: [{
-                xtype: 'textfield',
-                fieldLabel: 'Logradouro',
-                width: 500,
-                bind: {
-                    value: '{boletoDetalhe.logradouroBeneficiario}'
-                },
-                fieldStyle: 'text-transform:uppercase'
-            }, {
-                xtype: 'textfield',
-                fieldLabel: 'Bairro',
-                width: 300,
-                bind: {
-                    value: '{boletoDetalhe.bairroBeneficiario}'
-                },
-                fieldStyle: 'text-transform:uppercase'
-            }, {
-                xtype: 'numberfield',
-                fieldLabel: 'Cep',
-                width: 190,
-                bind: {
-                    value: '{boletoDetalhe.cepBeneficiario}'
-                },
-                hideTrigger: true,
-                keyNavEnabled: false,
-                mouseWheelEnabled: false
-            }, {
-                xtype: 'textfield',
-                fieldLabel: 'Cidade',
-                width: 300,
-                bind: {
-                    value: '{boletoDetalhe.cidadeBeneficiario}'
-                },
-                fieldStyle: 'text-transform:uppercase'
-            }, {
-                xtype: 'ufCombo',
-                width: 160,
-                fieldLabel: 'UF',
-                editable: false,
-                queryMode: 'local',
-                displayField: 'uf',
-                //store: 'Boleto.model.UF',
-                bind: '{boletoDetalhe.ufBeneficiario}'
-            }]
+                text: 'Tipo',
+                dataIndex: 'tipo',
+                width: 120
+            }],
+            store: Ext.create('Ext.data.Store', {
+                fields: [
+                    'codigoPublico',
+                    'nome',
+                    'email',
+                    'tipo'
+                ],
+                sorters: 'nome',
+                autoLoad: true,
+                proxy: {
+                    type: 'ajax',
+                    url: '/publico/buscarPeloTipo',
+                    reader: {
+                        type: 'json',
+                        rootProperty: 'rows'
+                    },
+                    extraParams: {
+                        tipo: 'BENEFICIARIO'
+                    },
+                    noCache: false
+                }
+            })
         }, {
             xtype: 'panel',
             defaults: {

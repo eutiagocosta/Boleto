@@ -5,13 +5,7 @@ Ext.define('Boleto.view.boleto.BoletoListaModel', {
     stores: {
         boletoStore: {
             model: 'Boleto.model.Boleto',
-            autoLoad: true,
-            pageSize: 0,
-            noCache: false,
-            params: {
-                start: 0,
-                limit: 10
-            }
+            autoLoad: true
         }
     }
 });

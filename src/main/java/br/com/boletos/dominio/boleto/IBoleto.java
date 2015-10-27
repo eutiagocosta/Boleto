@@ -33,7 +33,7 @@ public class IBoleto {
 	private PublicoId pagadorId;
 	
 	private BigDecimal valorBoleto = BigDecimal.ZERO;
-	private BigDecimal quantidadeMoeda = BigDecimal.ZERO;
+	/*private BigDecimal quantidadeMoeda = BigDecimal.ZERO;
 	private BigDecimal valorMoeda = BigDecimal.ZERO;
 	private BigDecimal valorDescontos = BigDecimal.ZERO;
 	private BigDecimal valorDeducoes = BigDecimal.ZERO;
@@ -43,7 +43,7 @@ public class IBoleto {
 	private String especieMoeda;
 	private int codigoEspecieMoeda;
 	private String especieDocumento;
-	private String numeroDocumento;
+	private String numeroDocumento;*/
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private IDatas datas;
@@ -61,6 +61,25 @@ public class IBoleto {
 	private IBoleto(){}
 	
 	public IBoleto(IBoletoId boletoId, PublicoId beneficiarioId, PublicoId pagadorId, BigDecimal valorBoleto,
+			IDatas datas, String instrucao1, String instrucao2, String instrucao3, String instrucao4, String instrucao5,
+			String localPagamento1, String localPagamento2, String banco) {
+		super();
+		this.boletoId = boletoId;
+		this.beneficiarioId = beneficiarioId;
+		this.pagadorId = pagadorId;
+		this.valorBoleto = valorBoleto;
+		this.datas = datas;
+		this.instrucao1 = instrucao1;
+		this.instrucao2 = instrucao2;
+		this.instrucao3 = instrucao3;
+		this.instrucao4 = instrucao4;
+		this.instrucao5 = instrucao5;
+		this.localPagamento1 = localPagamento1;
+		this.localPagamento2 = localPagamento2;
+		this.banco = banco;
+	}
+	
+	/*public IBoleto(IBoletoId boletoId, PublicoId beneficiarioId, PublicoId pagadorId, BigDecimal valorBoleto,
 			BigDecimal quantidadeMoeda, BigDecimal valorMoeda, BigDecimal valorDescontos, BigDecimal valorDeducoes,
 			BigDecimal valorMulta, BigDecimal valorAcrescimos, String especieMoeda, int codigoEspecieMoeda,
 			String especieDocumento, String numeroDocumento, IDatas datas, String instrucao1, String instrucao2,
@@ -90,7 +109,7 @@ public class IBoleto {
 		this.localPagamento1 = localPagamento1;
 		this.localPagamento2 = localPagamento2;
 		this.banco = banco;
-	}
+	}*/
 	
 	public IBoletoId getBoletoId() {
 		return boletoId;
@@ -116,66 +135,7 @@ public class IBoleto {
 	public void setValorBoleto(BigDecimal valorBoleto) {
 		this.valorBoleto = valorBoleto;
 	}
-	public BigDecimal getQuantidadeMoeda() {
-		return quantidadeMoeda;
-	}
-	public void setQuantidadeMoeda(BigDecimal quantidadeMoeda) {
-		this.quantidadeMoeda = quantidadeMoeda;
-	}
-	public BigDecimal getValorMoeda() {
-		return valorMoeda;
-	}
-	public void setValorMoeda(BigDecimal valorMoeda) {
-		this.valorMoeda = valorMoeda;
-	}
-	public BigDecimal getValorDescontos() {
-		return valorDescontos;
-	}
-	public void setValorDescontos(BigDecimal valorDescontos) {
-		this.valorDescontos = valorDescontos;
-	}
-	public BigDecimal getValorDeducoes() {
-		return valorDeducoes;
-	}
-	public void setValorDeducoes(BigDecimal valorDeducoes) {
-		this.valorDeducoes = valorDeducoes;
-	}
-	public BigDecimal getValorMulta() {
-		return valorMulta;
-	}
-	public void setValorMulta(BigDecimal valorMulta) {
-		this.valorMulta = valorMulta;
-	}
-	public BigDecimal getValorAcrescimos() {
-		return valorAcrescimos;
-	}
-	public void setValorAcrescimos(BigDecimal valorAcrescimos) {
-		this.valorAcrescimos = valorAcrescimos;
-	}
-	public String getEspecieMoeda() {
-		return especieMoeda;
-	}
-	public void setEspecieMoeda(String especieMoeda) {
-		this.especieMoeda = especieMoeda;
-	}
-	public int getCodigoEspecieMoeda() {
-		return codigoEspecieMoeda;
-	}
-	public void setCodigoEspecieMoeda(int codigoEspecieMoeda) {
-		this.codigoEspecieMoeda = codigoEspecieMoeda;
-	}
-	public String getEspecieDocumento() {
-		return especieDocumento;
-	}
-	public void setEspecieDocumento(String especieDocumento) {
-		this.especieDocumento = especieDocumento;
-	}
-	public String getNumeroDocumento() {
-		return numeroDocumento;
-	}
-	public void setNumeroDocumento(String numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
+
 	public IDatas getDatas() {
 		return datas;
 	}

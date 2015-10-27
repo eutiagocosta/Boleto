@@ -8,7 +8,7 @@ public class BoletoData {
 	private String boletoId;
 	private String beneficiarioId;
 	private String pagadorId;
-	private BigDecimal quantidadeMoeda;
+	/*private BigDecimal quantidadeMoeda;
 	private BigDecimal valorMoeda;
 	private BigDecimal valorDescontos;
 	private BigDecimal valorDeducoes;
@@ -16,7 +16,7 @@ public class BoletoData {
 	private BigDecimal valorAcrescimos;
 	private String especieMoeda;
 	private int codigoEspecieMoeda;
-	private String especieDocumento;
+	private String especieDocumento;*/
 	private Calendar emissao;
 	private Calendar processamento;
 	private Calendar vencimento;
@@ -32,8 +32,30 @@ public class BoletoData {
 	private String banco;
 	
 	public BoletoData(){}
+	
+	public BoletoData(String boletoId, String beneficiarioId, String pagadorId, Calendar emissao,
+			Calendar processamento, Calendar vencimento, BigDecimal valor, String instrucao1,
+			String instrucao2, String instrucao3, String instrucao4, String instrucao5, String localPagamento1,
+			String localPagamento2, String banco) {
 
-	public BoletoData(String boletoId, String beneficiarioId, String pagadorId, BigDecimal quantidadeMoeda,
+		this.boletoId = boletoId;
+		this.beneficiarioId = beneficiarioId;
+		this.pagadorId = pagadorId;
+		this.emissao = emissao;
+		this.processamento = processamento;
+		this.vencimento = vencimento;
+		this.valor = valor;
+		this.instrucao1 = instrucao1;
+		this.instrucao2 = instrucao2;
+		this.instrucao3 = instrucao3;
+		this.instrucao4 = instrucao4;
+		this.instrucao5 = instrucao5;
+		this.localPagamento1 = localPagamento1;
+		this.localPagamento2 = localPagamento2;
+		this.banco = banco;
+	}
+	
+	/*public BoletoData(String boletoId, String beneficiarioId, String pagadorId, BigDecimal quantidadeMoeda,
 			BigDecimal valorMoeda, BigDecimal valorDescontos, BigDecimal valorDeducoes, BigDecimal valorMulta,
 			BigDecimal valorAcrescimos, String especieMoeda, int codigoEspecieMoeda, String especieDocumento,
 			Calendar emissao, Calendar processamento, Calendar vencimento, BigDecimal valor, String numeroDocumento,
@@ -56,7 +78,7 @@ public class BoletoData {
 		this.processamento = processamento;
 		this.vencimento = vencimento;
 		this.valor = valor;
-		this.numeroDocumento = numeroDocumento;
+		//this.numeroDocumento = numeroDocumento;
 		this.instrucao1 = instrucao1;
 		this.instrucao2 = instrucao2;
 		this.instrucao3 = instrucao3;
@@ -65,7 +87,7 @@ public class BoletoData {
 		this.localPagamento1 = localPagamento1;
 		this.localPagamento2 = localPagamento2;
 		this.banco = banco;
-	}
+	}*/
 
 	public String getBoletoId() {
 		return boletoId;
@@ -89,78 +111,6 @@ public class BoletoData {
 
 	public void setPagadorId(String pagadorId) {
 		this.pagadorId = pagadorId;
-	}
-
-	public BigDecimal getQuantidadeMoeda() {
-		return quantidadeMoeda;
-	}
-
-	public void setQuantidadeMoeda(BigDecimal quantidadeMoeda) {
-		this.quantidadeMoeda = quantidadeMoeda;
-	}
-
-	public BigDecimal getValorMoeda() {
-		return valorMoeda;
-	}
-
-	public void setValorMoeda(BigDecimal valorMoeda) {
-		this.valorMoeda = valorMoeda;
-	}
-
-	public BigDecimal getValorDescontos() {
-		return valorDescontos;
-	}
-
-	public void setValorDescontos(BigDecimal valorDescontos) {
-		this.valorDescontos = valorDescontos;
-	}
-
-	public BigDecimal getValorDeducoes() {
-		return valorDeducoes;
-	}
-
-	public void setValorDeducoes(BigDecimal valorDeducoes) {
-		this.valorDeducoes = valorDeducoes;
-	}
-
-	public BigDecimal getValorMulta() {
-		return valorMulta;
-	}
-
-	public void setValorMulta(BigDecimal valorMulta) {
-		this.valorMulta = valorMulta;
-	}
-
-	public BigDecimal getValorAcrescimos() {
-		return valorAcrescimos;
-	}
-
-	public void setValorAcrescimos(BigDecimal valorAcrescimos) {
-		this.valorAcrescimos = valorAcrescimos;
-	}
-
-	public String getEspecieMoeda() {
-		return especieMoeda;
-	}
-
-	public void setEspecieMoeda(String especieMoeda) {
-		this.especieMoeda = especieMoeda;
-	}
-
-	public int getCodigoEspecieMoeda() {
-		return codigoEspecieMoeda;
-	}
-
-	public void setCodigoEspecieMoeda(int codigoEspecieMoeda) {
-		this.codigoEspecieMoeda = codigoEspecieMoeda;
-	}
-
-	public String getEspecieDocumento() {
-		return especieDocumento;
-	}
-
-	public void setEspecieDocumento(String especieDocumento) {
-		this.especieDocumento = especieDocumento;
 	}
 
 	public Calendar getEmissao() {
@@ -266,5 +216,5 @@ public class BoletoData {
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
-	
+
 }
